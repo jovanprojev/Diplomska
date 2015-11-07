@@ -1,0 +1,19 @@
+.show-scope-demo .ng-scope  {
+  border: 1px solid red;
+  margin: 3px;
+}
+
+table, td, th{
+border:1px solid teal;
+}
+
+th{
+background-color:teal;
+color:white;
+}
+
+
+#IzmeniOGL,td{
+height:500px
+width:200px
+}

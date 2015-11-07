@@ -1,0 +1,61 @@
+#container{
+width:auto; 
+height:auto; 
+background-color:white;
+margin-left:35px;
+border-radius:50px;
+margin-top:50px;
+}
+
+#naslov{
+height:80px;
+background-color:#20B2AA;
+color:white;
+font-family:Helvetica, Impact, sans-serif;
+border-top-left-radius:50px;
+border-top-right-radius:50px;
+}
+
+#naslov{
+line-height:80px;
+text-align:center;
+}
+
+
+#menu{
+height:240px;
+width:200px;
+float:left;
+background-color:#48D1CC;
+border-bottom-left-radius:50px;
+}
+
+
+#sodrzina{
+height:auto;
+width:1000px;
+float:left;
+margin-left: 50px;
+}
+
+#DodadiOGL, #IzmeniOGL
+{
+display:none;
+}
+
+
+#slikaMirror {
+        -moz-transform: scaleX(-1);
+        -o-transform: scaleX(-1);
+        -webkit-transform: scaleX(-1);
+        transform: scaleX(-1);
+        filter: FlipH;
+        -ms-filter: "FlipH";
+}
+
+#footer{
+background-color:#20B2AA;
+clear:both;
+text-align:center;
+color:white;
+}

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html ng-app>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="description" content="oglasi.con.mk е сајт каде што сите може да огласуваат и каде што секој може да најде тоа што го бара.">
+		<meta name="keywords" content="MAKEDONIJA, OGLAS, OGLASI, ">
+		<meta name="author" content="oglasise.con.mk" href="https://plus.google.com/u/0/+JovanProjev">
+		<meta name="robots" content="all">
+		<title>Огласи | AngularJS</title>
+		<link type="image/png" rel="icon" href="./css/favicon.png">
+		<link rel="stylesheet" type="text/css" href="./css/style.css">
+		<link rel="stylesheet" type="text/css" href="./css/regLog_style.css">
+ 		<link rel="stylesheet" type="text/css" href="./css/table_style.css">
+		<link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
+	 </head>
+	 
+	 <body ng-app>
+	 	<div class="container">
+	 		<a id="logIn" href="#modal" class="btn">Логирај се / Регистрирај се</a>
+			<a id="logOut" href="#modal" class="btn" >Одјави се</a>
+
+	 		<div id="modal" class="popupContainer" style="display:none;">
+		<header class="popupHeader">
+			<span class="header_title" id="login">Логирај се / Регистрирај се</span>
+		</header>
+
+	
+		<section class="popupBody">
+			<div class="social_login">
+				<div class="action_btns">
+					<div class="one_half"><a href="#" id="login_form" class="btn">Логирај се</a></div>
+					<div class="one_half last"><a href="#" id="register_form" class="btn">Регистирај се</a></div>
+				</div>
+			</div>
+
+
+
+
+			<div class="user_register">
+				<form action="" id="registracija">
+					<label>Корисничко име</label>
+					<input type="text" name="username" id="username">
+					<br>
+
+					<label>Лозинка</label>
+					<input type="password" name="password" id="password">
+					<br>
+
+					<label>E-mail</label>
+					<input type="email" name="email" id="email">
+					<br>
+					
+					<div class="action_btns">
+						<div class="one_half"><a href="#" class="btn back_btn"><i class="fa fa-angle-double-left"></i> Назад</a></div>
+					<div class="one_half"><a href="#" id="reg" class="btn btn_red">Регистрирај се</a></div>
+					<br>
+					</div>
+				</form>
+			</div>
+
+	<br>
+	
+			<div class="user_login">
+				<form action="" id="najavuvanje"><br>
+					<label>Корисничко име</label>
+					<input type="text" name="username" id="uname">
+					<br>
+				
+				
+					<label>Лозинка</label>
+					<input type="password" name="password" id="passwd">
+					<br>
+
+					<div class="action_btns">
+						<div class="one_half"><a href="#" class="btn back_btn"><i class="fa fa-angle-double-left"></i> Назад</a></div>
+
+					<div class="one_half last"><a href="#" id="send" class="btn btn_red hidemodal">Логирај се</a></div>
+					</div>
+				</form>
+			</div>
+
+
+			
+			</section>
+		</div>
+	</div>
+		
+		
+		
+		<script type="text/javascript">
+	
+		</script>
+
+	 <div id="container">
+	 
+	 <div id="naslov">
+		<h1 id="naslov"><img src="./css/megaphone.png"/>      ОГЛАСИ      <img src="./css/megaphone.png" id="slikaMirror"/></h1>
+	 </div>
+	
+	<div id="menu">
+	<br/><br/>
+		<button id="prikaziTabela" type="button" class="btn btn-primary">Огласи</button><br /><br />
+		<button id="DOTabela" type="button" class="btn btn-primary">Додади Оглас</button><br /><br />
+		<button id="IZTabela" type="button" class="btn btn-primary">Измени/избриши Оглас</button><br /><br />
+	</div>
+	
+	<div id="sodrzina">
+		<div id="dodadi"></div>
+	<div  id="dodadi"></div>
+	<br/><br/>
+		<!--Табела за прикажубање на податоците од огласите во базата на parse.com-->
+		<table id="oglasi" ng-controller="MyController" ng-init="getItems()"> 
+			<thead>
+				<th>Област</th>
+				<th>Работно Место</th>
+				<th>Опис</th>
+				<th>Објавувач</th>
+				<th>E-mail</th>
+			</thead>
+			
+			<tr ng-repeat="item in items| orderBy: '-createdAt'">
+				<td>   {{item.oblast}}</td>
+				<td>   {{item.rabotno_mesto}}</td>
+				<td>   {{item.opis}}</td>
+				<td>   {{item.objavuvach}}</td>
+				<td>   {{item.email}}</td> 
+			</tr>
+		</table>
+		
+		<br />
+		<br />
+
+		<!--форма за додавање на нов оглас -->
+		<form>
+			<div ng-controller="MyController">
+			<table id="DodadiOGL" >
+				<tr><td>Област:</td><td><input type='text' ng-model="forma.oblast" name='Oblast' id='Oblast' placeholder="Област на работата" size="70"/><td></tr>
+				<tr><td>Работно место:</td><td><input type='text' ng-model="forma.rabotno_mesto" name='rabotno_mesto' id='rabotno_mesto' placeholder="Име на работното место" size="70"/><td></tr>
+				<tr><td>Опис:</td><td><textarea type='text' ng-model="forma.opis" name='Opis' id='Opis' placeholder="Опис на работата" rows="10" cols="54"></textarea><td></tr>
+				<tr><td>Објавувач:</td><td><input type='text' ng-model="forma.objavuvach" name='Objavuvach' id='Objavuvach' placeholder="Објавувач на работата (Корисничко име)" size="70"/><td></tr>
+				<tr><td>Email:</td><td><input type='text' ng-model="forma.email" name='email' id='email' placeholder="Email" size="70"/><td></tr>
+				<tr><td></td><td><button ng-controller="Post" ng-click="postItems()"  class="btn btn-success btn-sm">Додади нов</td></tr>
+			</table>
+			</div>
+		</form>
+		
+		<br />
+		<br />
+
+
+		<!-- Форма за изменување на огласи -->
+		<form id="IzmeniOGL" ng-controller="MyController" ng-init="getItems()">
+
+			<div ng-repeat="item in items| orderBy: '-createdAt'" ng-show="item.objavuvach==Login()" > <!--User-->
+				
+			<table >
+				<tr><td>Област:</td><td><input type='text' ng-model="item.oblast" name='Oblast' id='Oblast' size="70"  value="item.oblast"/><td></tr>
+				<tr><td>Работно место:</td><td><input type='text' ng-model="item.rabotno_mesto" name='rabotno_mesto' id='rabotno_mesto'  size="70"/><td></tr>
+				<tr><td>Опис:</td><td><textarea type='text' ng-model="item.opis" name='Opis' id='Opis' rows="10" cols="54"></textarea><td></tr>
+				<tr><td>Објавувач:</td><td><input type='text' ng-model="item.objavuvach" name='Objavuvach' id='Objavuvach'  size="70"/><td></tr>
+				<tr><td>Email:</td><td><input type='text'  ng-model="item.email" id='email'  size="70"/><td></tr>
+				<tr><td><button ng-click="update(item)" class="btn btn-warning  btn-sm">Измени</td>
+				<td><button class="btn btn-danger" ng-click="BrisenjeFunkcija(item)">Избриши</button></td></tr><br/><br/>
+			</table>
+			
+			</div>
+		</form>
+		
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+	</div>
+	</div>
+	
+	<div id="footer"> Сите права се задржани &copy; Огласи 2014 Изработено од <a href="http://www.jovanprojev.con.mk">Јован Пројев</a></div>
+	
+	
+	
+	<script type="text/javascript" src="./lib/AngularJS.js"></script>
+	<script type="text/javascript" src="./lib/parse-1.2.18.js"></script>		
+	<script type="text/javascript" src="./lib/jquery-1.11.0.js"></script>
+	<script type="text/javascript" src="./lib/jquery.leanModal.min.js"></script>
+	<script type="text/javascript" src="./js/oglasi.js"></script>
+	<script type="text/javascript" src="./js/toggle.js"></script>
+	<script type="text/javascript" src="./js/regLog.js"></script>
+	<script type="text/javascript" src="./js/jquery.session.js"></script>
+	<script type="text/javascript" src="./js/disableRightClick.js"></script>
+	</body>
+</html>
